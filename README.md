@@ -6,4 +6,4 @@ Brew-like app management commands, only for [me](https://github.com/HelloDHLyn)
 
 ## Commands
 ### project
-  - `idw project start {{TEMPLATE}} {{PROJECT}}`
+  - `idw project make {{TEMPLATE_NAME}} {{PROJECT_NAME}}`

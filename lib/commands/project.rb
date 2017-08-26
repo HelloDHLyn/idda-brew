@@ -1,38 +1,32 @@
 #
 # Manage projects
-#   - idw project start {{TEMPLATE}} {{PROJECT}}
+#   - idw project make {{TEMPLATE_NAME}} {{PROJECT_NAME}}
 #
 
-require 'commands/common'
+require 'models/templates'
 
 
 def project(args)
-  def start(args)
-    template_name = args[1] or abort 'Template name required.'
-    prj_name = args[2] or abort 'Project name required.'
+  def make(args)
+    params = {
+        'template_name' => args[1],
+        'project_name' => args[2]
+    }
 
-    template = read_template template_name
-
-    # Check dependencies
-    template['dependencies'].each do |dep|
-      puts "Validating dependency: #{dep}"
-      validate dep
-    end
-    puts "All dependencies are ready.\n"
-
-    # Run make commands
-    template['make'].each do |command|
-      command = command.gsub '{{PROJECT_NAME}}', prj_name
-      puts "\n> #{command}"
-      system command
+    template = Templates.new params['template_name']
+    template.get_invalid_dependencies.each do |dep|
+      # TODO: install dependencies
+      puts dep
     end
 
-    puts "\nProject had successfully set!"
+    template.make params
+
+    puts "Successfully set '#{params['template_name']}' project!"
   end
 
   case args[0]
-    when 'start'
-      start args
+    when 'make'
+      make args
 
     else
       abort "No such subcommand: #{args[0]}"

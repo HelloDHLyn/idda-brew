@@ -3,7 +3,7 @@
   "dependencies": [
     "virtualenv"
   ],
-  "validator": "",
+  "validator": "test -d {{PROJECT_NAME}}",
   "make": [
     "mkdir {{PROJECT_NAME}}",
     "virtualenv -p python3 {{PROJECT_NAME}}/env"

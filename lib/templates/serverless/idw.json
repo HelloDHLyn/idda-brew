@@ -1,0 +1,10 @@
+{
+  "name": "serverless",
+  "description": "Serverless application, with aws lambda + terraform.",
+  "dependencies": [
+    ""
+  ],
+  "make": [
+    ""
+  ]
+}

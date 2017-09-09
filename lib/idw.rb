@@ -1,11 +1,13 @@
-require 'commands/project'
+require 'thor'
+require 'commands'
 
-def run
-  case ARGV[0]
-    when 'project'
-      project ARGV[1..-1]
+class IdwApp < Thor
+  package_name 'Idw'
 
-    else
-      abort "No such command: #{ARGV[0]}"
+  desc 'describe TEMPLATE_NAME', 'Describe boilerplate'
+  def describe(name)
+    describe_command name
   end
 end
+
+IdwApp.start
